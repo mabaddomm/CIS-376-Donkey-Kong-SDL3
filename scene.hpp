@@ -1,0 +1,21 @@
+#ifndef     __HPP_SCENE__
+#define     __HPP_SCENE__
+
+#include <vector>
+
+
+class GameObject;
+// A Scene is a simple collection for game objects. You may also
+// want to keep other information in a scene, like background color, etc.
+
+
+class Scene {
+  public: 
+    void addObject(GameObject *go);
+    void updateScene(float deltaTime);
+
+    private:
+    std::vector<GameObject *> game_objects;
+};
+
+#endif
