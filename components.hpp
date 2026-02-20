@@ -14,9 +14,12 @@ class Component {
 		virtual ~Component() = default;
 		virtual void update(float deltaTime) {}
 
+		//Who owns the gameObject
 		GameObject* getOwner() const;
 
 	private:
+		//Only gameObject can call this so when we add a component it sets
+		//its owner to a gameObject
 		void setOwner(GameObject* go);
 
 		// Make it easier to share information with GameObjects
@@ -46,6 +49,14 @@ class SpriteComponent : public Component {
 		SDL_FRect destRect{};
 		SDL_Texture* sprite = nullptr;
 };
+
+class PlayerInputComponent : public Component {
+	public: 
+	void update(float deltaTime) override;
+	private:
+	float pps = 1.0f;
+};
+
 
 // Not used yet.  Will become more important
 // when we get to 3D.

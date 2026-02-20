@@ -28,8 +28,12 @@ class Engine {
     Engine(const Engine&) = delete;
     Engine& operator=(const Engine&) = delete;
 
+    //This lets other classes draw without owning the renderer
     SDL_Renderer* getRenderer();
+    
+    //Changes the scene to scene we enter
     void setScene(Scene* scene);
+    //Starts the enginge
     void run();
 
     Engine();
@@ -45,6 +49,7 @@ class Engine {
     //Here were are defining window as a SDL_windo
     SDL_Window* window; 
 
+    //This is our Render for the game
     SDL_Renderer* renderer;
 
     SDL_Surface* surface;
@@ -52,8 +57,12 @@ class Engine {
 
     bool running = false; 
 
-    //We are storing copies of events not pointers/ references
+    //We are storing copies of events not pointers/ references each frame
+    //Events are like our inputs and stuff
+    //We can uses this to let scenes gameobjects or components see what inputs occured
     static std::vector<SDL_Event> keyEvents;
+
+    //This is an example scene
     Scene* scene;
 
 };

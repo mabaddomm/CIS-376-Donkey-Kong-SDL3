@@ -1,0 +1,11 @@
+/Users/cusdo/Documents/CIS_376/SDLWork/CIS-376-Donkey-Kong-SDL3/build/CMakeFiles/DonkeyKong.dir
+/Users/cusdo/Documents/CIS_376/SDLWork/CIS-376-Donkey-Kong-SDL3/build/CMakeFiles/edit_cache.dir
+/Users/cusdo/Documents/CIS_376/SDLWork/CIS-376-Donkey-Kong-SDL3/build/CMakeFiles/rebuild_cache.dir
+/Users/cusdo/Documents/CIS_376/SDLWork/CIS-376-Donkey-Kong-SDL3/build/vendored/SDL/CMakeFiles/SDL3-shared.dir
+/Users/cusdo/Documents/CIS_376/SDLWork/CIS-376-Donkey-Kong-SDL3/build/vendored/SDL/CMakeFiles/SDL3_test.dir
+/Users/cusdo/Documents/CIS_376/SDLWork/CIS-376-Donkey-Kong-SDL3/build/vendored/SDL/CMakeFiles/SDL_uclibc.dir
+/Users/cusdo/Documents/CIS_376/SDLWork/CIS-376-Donkey-Kong-SDL3/build/vendored/SDL/CMakeFiles/edit_cache.dir
+/Users/cusdo/Documents/CIS_376/SDLWork/CIS-376-Donkey-Kong-SDL3/build/vendored/SDL/CMakeFiles/rebuild_cache.dir
+/Users/cusdo/Documents/CIS_376/SDLWork/CIS-376-Donkey-Kong-SDL3/build/vendored/SDL_image/CMakeFiles/SDL3_image-shared.dir
+/Users/cusdo/Documents/CIS_376/SDLWork/CIS-376-Donkey-Kong-SDL3/build/vendored/SDL_image/CMakeFiles/edit_cache.dir
+/Users/cusdo/Documents/CIS_376/SDLWork/CIS-376-Donkey-Kong-SDL3/build/vendored/SDL_image/CMakeFiles/rebuild_cache.dir

@@ -20,6 +20,7 @@ public:
   template <typename T, typename... Args> T *addComponent(Args &&...args) {
     static_assert(std::is_base_of<Component, T>::value,
                   "T must derive from Component");
+    //example usage player->addComponent<trabsfrom componet>(100, 100)_
 
     // Making the component a unique pointer makes sure that it is
     // only owned by one GameObject, and that we can't accidentally
@@ -43,8 +44,11 @@ public:
     return nullptr;
   }
 
+  //Function declarition
   virtual void update(float deltaTime);
 
+
+//This is the vector of game of components the gameobject has
 private:
   std::vector<std::unique_ptr<Component>> components;
 };

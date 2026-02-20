@@ -8,11 +8,19 @@ std::vector<SDL_Event> Engine::keyEvents;
 
 Engine::Engine() {init();}
 
-SDL_Renderer* Engine::getRenderer() {return this->renderer; }; 
+//This asks for the renderer in case something else needs to be drawn
+SDL_Renderer* Engine::getRenderer() {
+    return this->renderer; 
+}; 
 
-void Engine::setScene(Scene *scene) {this -> scene = scene;}
+//Can use it to change the scene to what scene you want
+void Engine::setScene(Scene *scene) {
+    this -> scene = scene
+;}
 
 
+//This loops through the game over and over again until it quits
+/*It gets delta time, and colleect inputs, update the scenes, renders and frame limits*/
 void Engine::run() {
     //A frect a struct that is used to store x, and y positions with w, and h being widtha and height
     //SDL_FRect destRect = {100, 100, 500, 500};
@@ -32,6 +40,8 @@ void Engine::run() {
 
         //Get delta time
         Uint64 currentTime = SDL_GetTicks();
+
+        //Gets delta time to make movemmement frame-rate independent
         float deltaTime = (currentTime - lastTime) / 1000.0f;
         lastTime = currentTime;
 
@@ -47,7 +57,7 @@ void Engine::run() {
         Engine::keyEvents.clear();
         SDL_Event event;
 
-        //This loop cplls to see if all events are handled 
+        //This loop cplls to see if all events(input) are handled 
         while (SDL_PollEvent(&event)) {
             //This is a close event in a way 
             if (event.type == SDL_EVENT_QUIT) {
@@ -89,6 +99,7 @@ void Engine::run() {
 }
 
 
+//This creates the window,, and the renderer its like a startup system
 bool Engine::init(){
     if (!SDL_Init(SDL_INIT_VIDEO)){
         SDL_Log("SDL_Init failed: %s", SDL_GetError());
@@ -127,6 +138,7 @@ bool Engine::init(){
     return true;
 }
 
+//Destorys window, renderer and ssl
 void Engine::shutdown() {
         //SDL_DestroyTexture(sprite);
         SDL_DestroyRenderer(renderer);

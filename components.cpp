@@ -1,5 +1,6 @@
 #include "components.hpp"
 #include "gameObjects.hpp"
+#include "gameEngine.hpp"
 
 //#include <glm/vec4.hpp>
 #include <SDL3_image/SDL_image.h>
@@ -55,6 +56,37 @@ void SpriteComponent::update(float) {
 SDL_FRect* SpriteComponent::getRect(){
     return &destRect;
 }
+
+
+void PlayerInputComponent::update(float dt){
+    auto* owner = getOwner();
+
+    auto* playerSprite = owner->getComponent<SpriteComponent>();
+
+    SDL_FRect* playerRect = playerSprite->getRect();
+
+    for (auto it = Engine::keyEvents.begin(); 
+        it != Engine::keyEvents.end(); ++it){
+    
+            if (it->type == SDL_EVENT_KEY_DOWN) {
+
+            if (it->key.key == SDLK_W){
+                playerRect->y -= pps *dt;
+            }
+            if (it->key.key == SDLK_S){
+                playerRect->y += pps *dt;
+            }
+            if(it->key.key == SDLK_A){
+                playerRect->x -= pps *dt;
+            }
+            if (it->key.key == SDLK_D){
+                playerRect->x += pps *dt;
+            }
+        }
+    }
+}
+
+
 /*
 void TransformComponent::update(float) {
     // empty for now
