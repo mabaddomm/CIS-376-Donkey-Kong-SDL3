@@ -37,7 +37,7 @@ class SpriteComponent : public Component {
 		// Load an image from a file.  Normally we would
 		// probably have multiple images per sprite for
 		// animations.
-		bool loadSprite(SDL_Renderer* renderer, char* path);
+		bool loadSprite(SDL_Renderer* renderer, char* path, SDL_FRect rect = {0, 0, 32, 32});
 		SDL_Texture* getSprite();
 		void update(float deltaTime) override;
 		SDL_FRect* getRect();
@@ -57,17 +57,24 @@ class PlayerInputComponent : public Component {
 	float pps = 1.0f;
 };
 
-
-// Not used yet.  Will become more important
-// when we get to 3D.
-/*
-class TransformComponent : public Component {
-	public:
+class RedBoxComponent : public Component {
+	public: 
+		RedBoxComponent(float x, float y, float w, float h, SDL_Color color = {255,0,0,255});
 		void update(float deltaTime) override;
-	private:
-		glm::vec4 position{};
-		glm::vec4 rotation{};
-		glm::vec4 scale{1.f, 1.f, 1.f, 1.f};
-};*/
+		SDL_FRect* getRect();
+
+	private: 
+		SDL_FRect rect{};
+		SDL_Color color;
+};
+
+class CollisionComponent: public Component {
+	public: 
+		CollisionComponent(SDL_FRect rect);
+		SDL_FRect *getRect();
+		void update(float deltaTime) override {};
+	private: 
+		SDL_FRect rect{};
+};
 
 #endif

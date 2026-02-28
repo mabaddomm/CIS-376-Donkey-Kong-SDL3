@@ -11,10 +11,22 @@ class GameObject;
 
 class Scene {
   public: 
+
+  static Scene& instance(){
+      static Scene instance;
+      return instance;
+  }
+    // Delete copy operators like Engine
+    Scene(const Scene&) = delete;
+    Scene& operator=(const Scene&) = delete;
+
+
     void addObject(GameObject *go);
     void updateScene(float deltaTime);
+    std::vector<GameObject*> & getObjects();
 
     private:
+    Scene() = default;
     std::vector<GameObject *> game_objects;
 };
 

@@ -108,9 +108,9 @@ bool Engine::init(){
 
 
     //Creates a window, and this windo is what we draw on
-    window = SDL_CreateWindow("RGB Color Cycle",
-        800, 600,
-        SDL_WINDOW_FULLSCREEN
+    window = SDL_CreateWindow("My Game",
+        1280, 800, 0
+        //SDL_WINDOW_FULLSCREEN
     );
     //This checks to make sure the window was created
     if (!window) {

@@ -14,3 +14,8 @@
       (*it)->update(deltaTime);
     }
   }
+
+  std::vector<GameObject*>& Scene::getObjects(){
+    return game_objects;
+  }
+

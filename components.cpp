@@ -1,6 +1,7 @@
 #include "components.hpp"
 #include "gameObjects.hpp"
 #include "gameEngine.hpp"
+#include "scene.hpp"
 
 //#include <glm/vec4.hpp>
 #include <SDL3_image/SDL_image.h>
@@ -22,10 +23,10 @@ void SpriteComponent::setY(int y) {
     destRect.y = y;
 }
 
-bool SpriteComponent::loadSprite(SDL_Renderer* renderer, char* path) {
+bool SpriteComponent::loadSprite(SDL_Renderer* renderer, char* path, SDL_FRect rect) {
     // Hard coding this for my sample game that uses 64x64 sprites.
     // You may need to adjust and/or have variable sizes.
-    destRect = {0, 0, 64, 64};
+    destRect = rect;
     this->renderer = renderer;
 
     // Surfaces are software based, so slow.  But, we need them
@@ -49,7 +50,12 @@ SDL_Texture* SpriteComponent::getSprite() {
 }
 
 void SpriteComponent::update(float) {
-    SDL_RenderTexture(renderer, sprite, nullptr, &destRect);
+    if (sprite) {
+        SDL_RenderTexture(renderer, sprite, nullptr, &destRect);
+    } else {
+        SDL_SetRenderDrawColor(renderer, 200, 0, 0, 255);
+        SDL_RenderFillRect(renderer, &destRect);
+    }
 }
 
 // The destRect is where and how much of the image will be drawn.
@@ -67,6 +73,9 @@ void PlayerInputComponent::update(float dt){
 
     for (auto it = Engine::keyEvents.begin(); 
         it != Engine::keyEvents.end(); ++it){
+
+            float originalX = playerRect->x;
+            float originalY = playerRect->y;
     
             if (it->type == SDL_EVENT_KEY_DOWN) {
 
@@ -82,12 +91,43 @@ void PlayerInputComponent::update(float dt){
             if (it->key.key == SDLK_D){
                 playerRect->x += pps *dt;
             }
+
+            bool collided = false;
+            for (auto* go : Scene::instance().getObjects()) {
+                auto* col = go->getComponent<CollisionComponent>();
+                if (col) {
+                    if (SDL_HasRectIntersectionFloat(playerRect, col->getRect())) {
+                        collided = true;
+                        break;
+                    }
+                }
+            } 
+
+            // If collided revert position
+            if (collided) {
+                playerRect->x = originalX;
+                playerRect->y = originalY;
+            } 
         }
     }
 }
 
+RedBoxComponent::RedBoxComponent(float x, float y, float w, float h, SDL_Color color)
+    : rect {x, y, w, h}, color(color){}
 
-/*
-void TransformComponent::update(float) {
-    // empty for now
-}*/
+void RedBoxComponent::update(float) {
+    SDL_Renderer* renderer = Engine::instance().getRenderer();
+    SDL_SetRenderDrawColor(renderer, color.r, color.g, color.b, color.a);
+    SDL_RenderFillRect(renderer, &rect);
+}
+
+SDL_FRect* RedBoxComponent::getRect() { return &rect; }
+
+
+//Declaring the Collision component
+CollisionComponent::CollisionComponent(SDL_FRect rect) 
+    : rect(rect){}
+
+SDL_FRect* CollisionComponent::getRect() {
+    return &rect;
+}
