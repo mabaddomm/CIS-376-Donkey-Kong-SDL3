@@ -37,7 +37,7 @@ class SpriteComponent : public Component {
 		// Load an image from a file.  Normally we would
 		// probably have multiple images per sprite for
 		// animations.
-		bool loadSprite(SDL_Renderer* renderer, char* path, SDL_FRect rect = {0, 0, 32, 32});
+		bool loadSprite(SDL_Renderer* renderer, const char* path, SDL_FRect rect = {0, 0, 32, 32});
 		SDL_Texture* getSprite();
 		void update(float deltaTime) override;
 		SDL_FRect* getRect();
@@ -54,7 +54,7 @@ class PlayerInputComponent : public Component {
 	public: 
 	void update(float deltaTime) override;
 	private:
-	float pps = 1.0f;
+	float pps = 600.0f;
 };
 
 class RedBoxComponent : public Component {
@@ -77,4 +77,44 @@ class CollisionComponent: public Component {
 		SDL_FRect rect{};
 };
 
+//new stuff
+
+
+class GravityComponent : public Component {
+    public:
+        void update(float dt) override;
+        void jump();
+        bool isGrounded() const { return grounded; }
+		void setOnLadder(bool value) { onLadder = value; }
+        bool isOnLadder() const { return onLadder; }
+
+
+    private:
+        float velocityY = 0.0f;
+        float gravity = 800.0f;
+        float jumpForce = 500.0f;
+        bool grounded = false;
+		bool onLadder = false;
+
+};
+
+class LadderComponent : public Component {
+    public:
+        LadderComponent(SDL_FRect rect);
+        SDL_FRect* getRect();
+        void update(float) override {}
+    private:
+        SDL_FRect rect{};
+};
+
+
+class BarrelMovementComponent : public Component {
+    public:
+		BarrelMovementComponent(float speed = 200.0f) : speed(speed) {}
+        void update(float dt) override;
+    private:
+        float speed;
+        float direction = -1.0f; // -1 = left, 1 = right
+};
 #endif
+

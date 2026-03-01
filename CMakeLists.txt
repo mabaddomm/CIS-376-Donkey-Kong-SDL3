@@ -19,6 +19,7 @@ add_executable(DonkeyKong
     components.cpp
     scene.cpp
     player.cpp
+    gameMap.cpp
 )
 
 # Link SDL3

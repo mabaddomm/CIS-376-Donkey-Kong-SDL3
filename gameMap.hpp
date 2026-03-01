@@ -11,4 +11,10 @@ class Platform : public GameObject {
     private: 
 };
 
+class Ladder : public GameObject {
+    public:
+        Ladder(float x, float y, float w, float h);
+    private:
+};
+
 #endif 

@@ -84,7 +84,8 @@ void Engine::run() {
         //Render starts doign its drawing
         SDL_SetRenderDrawColor(renderer, 50, 205 ,50 , 255);
         SDL_RenderClear(renderer);
-        scene->updateScene(targetFrameTime);
+        //TEST
+        scene->updateScene(deltaTime);
         SDL_RenderPresent(renderer);
         // Naive delay that doesn't take into account
 		// how long the loop ran.

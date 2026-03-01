@@ -14,4 +14,10 @@ class Player : public GameObject {
 		//float pps = 10.0;
 }; 
 
+class Barrel : public GameObject {
+    public:
+        Barrel(float x, float y, float w, float h);
+	private:
+};
+
 #endif
