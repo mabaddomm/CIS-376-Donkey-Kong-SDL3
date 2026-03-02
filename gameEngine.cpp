@@ -82,7 +82,7 @@ void Engine::run() {
         }*/
 
         //Render starts doign its drawing
-        SDL_SetRenderDrawColor(renderer, 50, 205 ,50 , 255);
+        SDL_SetRenderDrawColor(renderer, 136, 206 ,235 , 255);
         SDL_RenderClear(renderer);
         //TEST
         scene->updateScene(deltaTime);

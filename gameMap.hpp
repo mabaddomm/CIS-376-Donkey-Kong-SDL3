@@ -13,8 +13,15 @@ class Platform : public GameObject {
 
 class Ladder : public GameObject {
     public:
-        Ladder(float x, float y, float w, float h);
+        Ladder(float x, float y, float w, float h, const char* imagePath);
     private:
 };
+
+class Platform2: public GameObject {
+    public: 
+        Platform2(float x, float y, float w, float h, const char* imagePath);
+    private:
+};
+
 
 #endif 
